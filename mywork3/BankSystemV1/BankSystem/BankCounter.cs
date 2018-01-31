@@ -114,9 +114,13 @@ public class BankCounter:Isg
 
         if (op == "1" || op == "2")
         {
+            Show("id: ");
             string id = GetInput();
+            Show("name: ");
             string name = GetInput();
+            Show("pwd: ");
             string pwd = GetInput();
+            Show("money: ");
             string smoney = GetInput();
             double money = double.Parse(smoney);
 
