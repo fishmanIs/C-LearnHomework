@@ -17,43 +17,42 @@ namespace WindowsFormsApp7
             InitializeComponent();
         }
 
-        private void btnHelp_Click(object sender, EventArgs e)
+        private void help_Click(object sender, EventArgs e)
         {
             MessageBox.Show("输入AB要说的话之后点击按钮。");
         }
 
-        private void btnA_Click(object sender, EventArgs e)
+        private void showAWords_Click(object sender, EventArgs e)
         {
-            //将tx中的内容输出并清空tx
-            Talk(btnA.Text);
+            AddwordsRecord("A");
         }
 
-        private void btnB_Click(object sender, EventArgs e)
+        private void showBWords_Click(object sender, EventArgs e)
         {
-            //将tx中的内容输出并清空tx
-            Talk(btnB.Text);
+            AddwordsRecord("B");
         }
 
-        //将tx中的内容输出并清空tx
-        public void Talk(string who)
+        //输出talkerName及inputWords.Text中的内容,并清空inputWords.Text。
+        public void AddwordsRecord(string talkerName)
         {
-            string str = who;
-            str += ":" + txSpeak.Text;
-            lstSpeak.Items.Add(str);
-            lstSpeak.Items.Add("");
-            txSpeak.Text = "";
+            string wholeWords = "";
+
+            wholeWords += talkerName + "说:" + inputWords.Text;
+            wordsRecord.Items.Add(wholeWords);
+            wordsRecord.Items.Add("");//空一行
+            inputWords.Text = "";
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void start_Click(object sender, EventArgs e)
         {
             //隐藏开始按钮
-            btnStart.Visible = false;
+            start.Visible = false;
 
             //显示界面
-            label1.Visible = true;
-            txSpeak.Visible = true;
-            btnA.Visible = btnB.Visible = btnHelp.Visible = true;
-            lstSpeak.Visible = true;
+            hintInput.Visible = true;
+            inputWords.Visible = true;
+            showAWords.Visible = showBWords.Visible = help.Visible = true;
+            wordsRecord.Visible = true;
         }
     }
 }
