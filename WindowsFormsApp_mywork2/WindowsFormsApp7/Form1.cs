@@ -18,46 +18,41 @@ namespace WindowsFormsApp7
         }
 
         int count = 0,score = 0,result;
-        string F,R;
+        string question;
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void start_Click(object sender, EventArgs e)
         {
-            //数据初始化
             count = 0;
             score = 0;
 
-            //随机生成题目
-            RandF();
+            RandQuestion();
 
-            //启动时钟
             this.timer.Enabled = true;
         }
 
-        private void btnJudge_Click(object sender, EventArgs e)
+        private void judgeAnswer_Click(object sender, EventArgs e)
         {
-            //判断答案改变txt底色
-            if (txtAns.Text == result.ToString())
-                txtAns.BackColor = Color.FromArgb(0, 255, 0);
+            //判断答案改变answer的底色
+            if (answer.Text == result.ToString())
+                answer.BackColor = Color.FromArgb(0, 255, 0);
             else
             {
-                txtAns.BackColor = Color.FromArgb(255, 0, 0);
-                txtAns.Text = "";
+                answer.BackColor = Color.FromArgb(255, 0, 0);
+                answer.Text = "";
             }
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            //判断答案
-             Judge();
+            JudgeAndRecord();
 
-            //判断是否完成
             if (isOK())
                 MessageBox.Show("恭喜！你的得分是：" + score);
             else
-                RandF();//随机生成题目
+                RandQuestion();
         }
 
-        private void btnPoint_Click(object sender, EventArgs e)
+        private void showRule_Click(object sender, EventArgs e)
         {
             MessageBox.Show("点击开始按钮开始游戏。\n每" +
                 (timer.Interval/1000).ToString() + 
@@ -69,7 +64,7 @@ namespace WindowsFormsApp7
 
 
         //随机生成题目
-        public void RandF()
+        public void RandQuestion()
         {
             Random rnd = new Random();
 
@@ -81,37 +76,38 @@ namespace WindowsFormsApp7
 
             switch (op)
             {
-                case 0: F = a + " + " + b + " ="; result = a + b; break;
-                case 1: F = a + " - " + b + " ="; result = a - b; break;
-                case 2: F = a + " * " + b + " ="; result = a * b; break;
+                case 0: question = a + " + " + b + " ="; result = a + b; break;
+                case 1: question = a + " - " + b + " ="; result = a - b; break;
+                case 2: question = a + " * " + b + " ="; result = a * b; break;
             }
 
-            labF.Text = F;
-            txtAns.Text = "";
-            txtAns.BackColor = Color.FromArgb(255, 255, 255);
+            showQuestion.Text = question;
+            answer.Text = "";
+            answer.BackColor = Color.FromArgb(255, 255, 255);
             count++;
         }
 
-        //判断答案
-        public void Judge()
+        //判断答案并增加记录
+        public void JudgeAndRecord()
         {
-            R = F + txtAns.Text;
+            string newRecord = question + answer.Text;
 
-            if (txtAns.Text == result.ToString())
+            if (answer.Text == result.ToString())
             {
                 score++;
-                R += " √";
+                newRecord += " √";
             }
             else
             {
                 score--;
-                txtAns.Text = "";
-                R += " ×";
+                answer.Text = "";
+                newRecord += " ×";
             }
 
-            //更新列表
-            labScore.Text = score.ToString();
-            lstDisp.Items.Add(R);
+            //更新分数
+            showScore.Text = score.ToString();
+
+            resultRecord.Items.Add(newRecord);
         }
 
         //判断是否完成
