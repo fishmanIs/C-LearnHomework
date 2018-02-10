@@ -1,19 +1,21 @@
 using System;
 using System.Collections;
 
-public class ATM:Isg
+/// <summary>
+/// 只能对普通账户进行存取钱操作
+/// </summary>
+public class ATM : IShowAndGetInput
 {
-	
-	Bank bank;
-	public ATM( Bank bank)
-	{
-		this.bank = bank;
-	}
-	
-	public void ATMTransaction()
-	{
-        //查询账号
-        Account account=Find();
+
+    Bank bank;
+    public ATM(Bank bank)
+    {
+        this.bank = bank;
+    }
+
+    public void ATMTransaction()
+    {
+        Account account = FindAccount();
 
         if (account != null)
         {
@@ -27,8 +29,8 @@ public class ATM:Isg
             else if (op == "2")
             {
                 Show("save money");
-                string smoney = GetInput();
-                double money = double.Parse(smoney);
+                string strMoney = GetInput();
+                double money = double.Parse(strMoney);
 
                 bool ok = account.SaveMoney(money);
                 if (ok) Show("ok");
@@ -39,8 +41,8 @@ public class ATM:Isg
             else if (op == "3")
             {
                 Show("withdraw money");
-                string smoney = GetInput();
-                double money = double.Parse(smoney);
+                string strMoney = GetInput();
+                double money = double.Parse(strMoney);
 
                 bool ok = account.WithdrawMoney(money);
                 if (ok) Show("ok");
@@ -51,18 +53,9 @@ public class ATM:Isg
             else
                 Show("eeer");
         }
+    }
 
-        //return account;
-        //Account account = Find();
-		//if( account != null)
-		//{
-            //服务
-          //  ATMService(account);
-        //}
-	}
-
-    //账号查询
-    private Account Find()
+    private Account FindAccount()
     {
         Account account;
         Show("please insert your name or id");
@@ -77,7 +70,6 @@ public class ATM:Isg
         return account;
     }
 
-    //服务
     private void ATMService(Account account)
     {
         Show("1: display; 2: save; 3: withdraw");
@@ -90,8 +82,8 @@ public class ATM:Isg
         else if (op == "2")
         {
             Show("save money");
-            string smoney = GetInput();
-            double money = double.Parse(smoney);
+            string strMoney = GetInput();
+            double money = double.Parse(strMoney);
 
             bool ok = account.SaveMoney(money);
             if (ok) Show("ok");
@@ -102,8 +94,8 @@ public class ATM:Isg
         else if (op == "3")
         {
             Show("withdraw money");
-            string smoney = GetInput();
-            double money = double.Parse(smoney);
+            string strMoney = GetInput();
+            double money = double.Parse(strMoney);
 
             bool ok = account.WithdrawMoney(money);
             if (ok) Show("ok");
@@ -116,13 +108,12 @@ public class ATM:Isg
     }
 
 
-    //接口实现
-    public void Show(string msg)
+    public void Show(string message)
     {
-        Console.WriteLine(msg);
+        Console.WriteLine(message);
     }
     public string GetInput()
     {
-        return Console.ReadLine();// 输入字符
+        return Console.ReadLine();
     }
 }

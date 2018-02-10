@@ -29,90 +29,90 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.showQuestion = new System.Windows.Forms.Label();
-            this.answer = new System.Windows.Forms.TextBox();
-            this.start = new System.Windows.Forms.Button();
-            this.judgeAnswer = new System.Windows.Forms.Button();
-            this.showRule = new System.Windows.Forms.Button();
-            this.resultRecord = new System.Windows.Forms.ListBox();
-            this.hint = new System.Windows.Forms.Label();
-            this.showScore = new System.Windows.Forms.Label();
+            this.lblShowQuestion = new System.Windows.Forms.Label();
+            this.txtAnswer = new System.Windows.Forms.TextBox();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnJudgeAnswer = new System.Windows.Forms.Button();
+            this.btnShowRule = new System.Windows.Forms.Button();
+            this.lstResultRecord = new System.Windows.Forms.ListBox();
+            this.lblHint = new System.Windows.Forms.Label();
+            this.lblShowScore = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // showQuestion
+            // lblShowQuestion
             // 
-            this.showQuestion.AutoSize = true;
-            this.showQuestion.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.showQuestion.Location = new System.Drawing.Point(48, 35);
-            this.showQuestion.Name = "showQuestion";
-            this.showQuestion.Size = new System.Drawing.Size(0, 16);
-            this.showQuestion.TabIndex = 0;
+            this.lblShowQuestion.AutoSize = true;
+            this.lblShowQuestion.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblShowQuestion.Location = new System.Drawing.Point(48, 35);
+            this.lblShowQuestion.Name = "lblShowQuestion";
+            this.lblShowQuestion.Size = new System.Drawing.Size(0, 16);
+            this.lblShowQuestion.TabIndex = 0;
             // 
-            // answer
+            // txtAnswer
             // 
-            this.answer.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.answer.Location = new System.Drawing.Point(186, 32);
-            this.answer.Name = "answer";
-            this.answer.Size = new System.Drawing.Size(68, 26);
-            this.answer.TabIndex = 3;
+            this.txtAnswer.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtAnswer.Location = new System.Drawing.Point(186, 32);
+            this.txtAnswer.Name = "txtAnswer";
+            this.txtAnswer.Size = new System.Drawing.Size(68, 26);
+            this.txtAnswer.TabIndex = 3;
             // 
-            // start
+            // btnStart
             // 
-            this.start.Location = new System.Drawing.Point(26, 69);
-            this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(88, 32);
-            this.start.TabIndex = 4;
-            this.start.Text = "开始";
-            this.start.UseVisualStyleBackColor = true;
-            this.start.Click += new System.EventHandler(this.start_Click);
+            this.btnStart.Location = new System.Drawing.Point(26, 69);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(88, 32);
+            this.btnStart.TabIndex = 4;
+            this.btnStart.Text = "开始";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // judgeAnswer
+            // btnJudgeAnswer
             // 
-            this.judgeAnswer.Location = new System.Drawing.Point(120, 69);
-            this.judgeAnswer.Name = "judgeAnswer";
-            this.judgeAnswer.Size = new System.Drawing.Size(88, 32);
-            this.judgeAnswer.TabIndex = 5;
-            this.judgeAnswer.Text = "判断";
-            this.judgeAnswer.UseVisualStyleBackColor = true;
-            this.judgeAnswer.Click += new System.EventHandler(this.judgeAnswer_Click);
+            this.btnJudgeAnswer.Location = new System.Drawing.Point(120, 69);
+            this.btnJudgeAnswer.Name = "btnJudgeAnswer";
+            this.btnJudgeAnswer.Size = new System.Drawing.Size(88, 32);
+            this.btnJudgeAnswer.TabIndex = 5;
+            this.btnJudgeAnswer.Text = "判断";
+            this.btnJudgeAnswer.UseVisualStyleBackColor = true;
+            this.btnJudgeAnswer.Click += new System.EventHandler(this.btnJudgeAnswer_Click);
             // 
-            // showRule
+            // btnShowRule
             // 
-            this.showRule.Location = new System.Drawing.Point(214, 69);
-            this.showRule.Name = "showRule";
-            this.showRule.Size = new System.Drawing.Size(54, 32);
-            this.showRule.TabIndex = 6;
-            this.showRule.Text = "规则";
-            this.showRule.UseVisualStyleBackColor = true;
-            this.showRule.Click += new System.EventHandler(this.showRule_Click);
+            this.btnShowRule.Location = new System.Drawing.Point(214, 69);
+            this.btnShowRule.Name = "btnShowRule";
+            this.btnShowRule.Size = new System.Drawing.Size(54, 32);
+            this.btnShowRule.TabIndex = 6;
+            this.btnShowRule.Text = "规则";
+            this.btnShowRule.UseVisualStyleBackColor = true;
+            this.btnShowRule.Click += new System.EventHandler(this.btnShowRule_Click);
             // 
-            // resultRecord
+            // lstResultRecord
             // 
-            this.resultRecord.FormattingEnabled = true;
-            this.resultRecord.ItemHeight = 12;
-            this.resultRecord.Location = new System.Drawing.Point(26, 138);
-            this.resultRecord.Name = "resultRecord";
-            this.resultRecord.Size = new System.Drawing.Size(242, 172);
-            this.resultRecord.TabIndex = 7;
+            this.lstResultRecord.FormattingEnabled = true;
+            this.lstResultRecord.ItemHeight = 12;
+            this.lstResultRecord.Location = new System.Drawing.Point(26, 138);
+            this.lstResultRecord.Name = "lstResultRecord";
+            this.lstResultRecord.Size = new System.Drawing.Size(242, 172);
+            this.lstResultRecord.TabIndex = 7;
             // 
-            // hint
+            // lblHint
             // 
-            this.hint.AutoSize = true;
-            this.hint.Location = new System.Drawing.Point(108, 114);
-            this.hint.Name = "hint";
-            this.hint.Size = new System.Drawing.Size(53, 12);
-            this.hint.TabIndex = 8;
-            this.hint.Text = "得分为：";
+            this.lblHint.AutoSize = true;
+            this.lblHint.Location = new System.Drawing.Point(108, 114);
+            this.lblHint.Name = "lblHint";
+            this.lblHint.Size = new System.Drawing.Size(53, 12);
+            this.lblHint.TabIndex = 8;
+            this.lblHint.Text = "得分为：";
             // 
-            // showScore
+            // lblShowScore
             // 
-            this.showScore.AutoSize = true;
-            this.showScore.Location = new System.Drawing.Point(167, 114);
-            this.showScore.Name = "showScore";
-            this.showScore.Size = new System.Drawing.Size(11, 12);
-            this.showScore.TabIndex = 10;
-            this.showScore.Text = "0";
+            this.lblShowScore.AutoSize = true;
+            this.lblShowScore.Location = new System.Drawing.Point(167, 114);
+            this.lblShowScore.Name = "lblShowScore";
+            this.lblShowScore.Size = new System.Drawing.Size(11, 12);
+            this.lblShowScore.TabIndex = 10;
+            this.lblShowScore.Text = "0";
             // 
             // timer
             // 
@@ -124,14 +124,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(293, 334);
-            this.Controls.Add(this.showScore);
-            this.Controls.Add(this.hint);
-            this.Controls.Add(this.resultRecord);
-            this.Controls.Add(this.showRule);
-            this.Controls.Add(this.judgeAnswer);
-            this.Controls.Add(this.start);
-            this.Controls.Add(this.answer);
-            this.Controls.Add(this.showQuestion);
+            this.Controls.Add(this.lblShowScore);
+            this.Controls.Add(this.lblHint);
+            this.Controls.Add(this.lstResultRecord);
+            this.Controls.Add(this.btnShowRule);
+            this.Controls.Add(this.btnJudgeAnswer);
+            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.txtAnswer);
+            this.Controls.Add(this.lblShowQuestion);
             this.Name = "Form1";
             this.Text = "欢迎来到小学算术无限地狱（×";
             this.ResumeLayout(false);
@@ -141,14 +141,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Label showQuestion;
-        private System.Windows.Forms.TextBox answer;
-        private System.Windows.Forms.Button start;
-        private System.Windows.Forms.Button judgeAnswer;
-        private System.Windows.Forms.Button showRule;
-        private System.Windows.Forms.ListBox resultRecord;
-        private System.Windows.Forms.Label hint;
-        private System.Windows.Forms.Label showScore;
+        private System.Windows.Forms.Label lblShowQuestion;
+        private System.Windows.Forms.TextBox txtAnswer;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnJudgeAnswer;
+        private System.Windows.Forms.Button btnShowRule;
+        private System.Windows.Forms.ListBox lstResultRecord;
+        private System.Windows.Forms.Label lblHint;
+        private System.Windows.Forms.Label lblShowScore;
         private System.Windows.Forms.Timer timer;
     }
 }

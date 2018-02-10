@@ -2,81 +2,77 @@
 using System;
 using System.Collections;
 
-public class CreditAccount : Account,Isg
+public class CreditAccount : Account, IShowAndGetInput
 {
-    private double creditLine;
-    private double debt;
-    private double surplus;
+    private double _maxCreditLine;
+    private double _debt;
+    private double _surplus;
 
-    //属性
     public double CreditLine
     {
         get
         {
-            return creditLine;
+            return _maxCreditLine;
         }
     }
     public double Debt
     {
         get
         {
-            return debt;
+            return _debt;
         }
     }
     public double Sueplus
     {
         get
         {
-            return surplus;
+            return _surplus;
         }
     }
 
     public CreditAccount(string id, string name, string pwd, double money)
     :base(id, name, pwd, money)
     {
-        creditLine = 10000;
-        debt = 0;
-        surplus = creditLine;
+        _maxCreditLine = 10000;
+        _debt = 0;
+        _surplus = _maxCreditLine;
     }
 
-    //增加额度
-    public bool AddLimit(double limit)
+    public bool Add_maxCreditLine(double howMuch)
     {
-        if (limit < 0)
+        if (howMuch < 0)
             return false;
 
-        creditLine += limit;
-        surplus += limit;
+        _maxCreditLine += howMuch;
+        _surplus += howMuch;
         return true;
     }
 
-    //还款
     public bool Repayment(double money)
     {
         if (money < 0)
             return false;
 
-        if(money<=debt)
+        if(money<= _debt)
         {
-            debt -= money;
-            surplus += money;
+            _debt -= money;
+            _surplus += money;
         }
         else
         {
-            base.Money += money - debt;
-            debt = 0;
-            surplus = creditLine;
+            base.Money += money - _debt;
+            _debt = 0;
+            _surplus = _maxCreditLine;
         }
 
         return true;
     }
 
-    //存钱
     public override bool SaveMoney(double money)
     {
-        if (money < 0) return false;  //卫语句
+        if (money < 0) return false;
 
-        if(debt>0)
+        if(_debt > 0)
         {
             Repayment(money);
         }
@@ -85,15 +81,14 @@ public class CreditAccount : Account,Isg
         return true;
     }
 
-    //取钱
     public override bool WithdrawMoney(double money)
     {
-        if (this.surplus >= money)
+        if (this._surplus >= money)
         {
             if (money >= base.Money)
             {
-                surplus -= money - base.Money;
-                debt += money - base.Money;
+                _surplus -= money - base.Money;
+                _debt += money - base.Money;
                 base.Money = 0;
             }
             else
@@ -104,12 +99,13 @@ public class CreditAccount : Account,Isg
         return false;
     }
 
-    public void Show(string msg)
+
+    public void Show(string message)
     {
-        Console.WriteLine(msg);
+        Console.WriteLine(message);
     }
     public string GetInput()
     {
-        return Console.ReadLine();// 输入字符
+        return Console.ReadLine();
     }
 }

@@ -4,94 +4,90 @@ using System.Collections;
 public class Account
 {
 
-    private double money; //decimal money;
-    private string id;
-    private string pwd;
-    private string name;
+    private double _money;
+    private string _id;
+    private string _pwd;
+    private string _name;
 
-    // Ù–‘
     public double Money
     {
         set
         {
-            money = value;
+            _money = value;
         }
         get
         {
-            return money;
+            return _money;
         }
     }
     public string Id
     {
         set
         {
-            id = value;
+            _id = value;
         }
         get
         {
-            return id;
+            return _id;
         }
     }
     public string Pwd
     {
         set
         {
-            pwd = value;
+            _pwd = value;
         }
         get
         {
-            return pwd;
+            return _pwd;
         }
     }
     public string Name
     {
         set
         {
-            name = value;
+            _name = value;
         }
         get
         {
-            return name;
+            return _name;
         }
     }
 
     public Account(string id, string name, string pwd, double money)
     {
         
-        this.id = id;
-        this.pwd = pwd;
-        this.name = name;
+        this._id = id;
+        this._pwd = pwd;
+        this._name = name;
         if (money >= 0)
-            this.money = money;
+            this._money = money;
         else
-            this.money = 0;
-        //Console.WriteLine(this.money);
+            this._money = 0;
     }
 
-    //¥Ê«Æ
     public virtual bool SaveMoney(double money)
     {
-        if (money < 0) return false;  //Œ¿”Ôæ‰
+        if (money < 0) return false;
 
-        this.money += money;
+        this._money += money;
         return true;
     }
 
-    //»°«Æ
     public virtual bool WithdrawMoney(double money)
     {
-        if (this.money >= money)
+        if (this._money >= money)
         {
-            this.money -= money;
+            this._money -= money;
             return true;
         }
 
         return false;
     }
 
-    //≤È’“’Àªß
-    public bool IsMatch(string noi, string pwd)
+    //≈–∂œ’Àªß «∑Ò¥Ê‘⁄
+    public bool IsMatch(string nameOrId, string pwd)
     {
-        return (noi == this.id||noi == this.name) && pwd == this.pwd;
+        return (nameOrId == this._id || nameOrId == this._name) && pwd == this._pwd;
     }
 }

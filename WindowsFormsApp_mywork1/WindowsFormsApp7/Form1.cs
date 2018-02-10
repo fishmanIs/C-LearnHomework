@@ -17,42 +17,42 @@ namespace WindowsFormsApp7
             InitializeComponent();
         }
 
-        private void help_Click(object sender, EventArgs e)
+        private void btnHelp_Click(object sender, EventArgs e)
         {
             MessageBox.Show("输入AB要说的话之后点击按钮。");
         }
 
-        private void showAWords_Click(object sender, EventArgs e)
+        private void btnShowAWords_Click(object sender, EventArgs e)
         {
             AddwordsRecord("A");
         }
 
-        private void showBWords_Click(object sender, EventArgs e)
+        private void btnShowBWords_Click(object sender, EventArgs e)
         {
             AddwordsRecord("B");
         }
 
-        //输出talkerName及inputWords.Text中的内容,并清空inputWords.Text。
+        //输出talkerName及txtInputWords.Text中的内容,并清空txtInputWords.Text。
         public void AddwordsRecord(string talkerName)
         {
             string wholeWords = "";
 
-            wholeWords += talkerName + "说:" + inputWords.Text;
-            wordsRecord.Items.Add(wholeWords);
-            wordsRecord.Items.Add("");//空一行
-            inputWords.Text = "";
+            wholeWords += talkerName + "说:" + txtInputWords.Text;
+            lstWordsRecord.Items.Add(wholeWords);
+            lstWordsRecord.Items.Add("");//空一行
+            txtInputWords.Text = "";
         }
 
-        private void start_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
             //隐藏开始按钮
-            start.Visible = false;
+            btnStart.Visible = false;
 
             //显示界面
-            hintInput.Visible = true;
-            inputWords.Visible = true;
-            showAWords.Visible = showBWords.Visible = help.Visible = true;
-            wordsRecord.Visible = true;
+            lblHintInput.Visible = true;
+            txtInputWords.Visible = true;
+            btnShowAWords.Visible = btnShowBWords.Visible = btnHelp.Visible = true;
+            lstWordsRecord.Visible = true;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace WindowsFormsApp7
         int count = 0,score = 0,result;
         string question;
 
-        private void start_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
             count = 0;
             score = 0;
@@ -30,15 +30,15 @@ namespace WindowsFormsApp7
             this.timer.Enabled = true;
         }
 
-        private void judgeAnswer_Click(object sender, EventArgs e)
+        private void btnJudgeAnswer_Click(object sender, EventArgs e)
         {
             //判断答案改变answer的底色
-            if (answer.Text == result.ToString())
-                answer.BackColor = Color.FromArgb(0, 255, 0);
+            if (txtAnswer.Text == result.ToString())
+                txtAnswer.BackColor = Color.FromArgb(0, 255, 0);
             else
             {
-                answer.BackColor = Color.FromArgb(255, 0, 0);
-                answer.Text = "";
+                txtAnswer.BackColor = Color.FromArgb(255, 0, 0);
+                txtAnswer.Text = "";
             }
         }
 
@@ -52,7 +52,7 @@ namespace WindowsFormsApp7
                 RandQuestion();
         }
 
-        private void showRule_Click(object sender, EventArgs e)
+        private void btnShowRule_Click(object sender, EventArgs e)
         {
             MessageBox.Show("点击开始按钮开始游戏。\n每" +
                 (timer.Interval/1000).ToString() + 
@@ -81,18 +81,18 @@ namespace WindowsFormsApp7
                 case 2: question = a + " * " + b + " ="; result = a * b; break;
             }
 
-            showQuestion.Text = question;
-            answer.Text = "";
-            answer.BackColor = Color.FromArgb(255, 255, 255);
+            lblShowQuestion.Text = question;
+            txtAnswer.Text = "";
+            txtAnswer.BackColor = Color.FromArgb(255, 255, 255);
             count++;
         }
 
         //判断答案并增加记录
         public void JudgeAndRecord()
         {
-            string newRecord = question + answer.Text;
+            string newRecord = question + txtAnswer.Text;
 
-            if (answer.Text == result.ToString())
+            if (txtAnswer.Text == result.ToString())
             {
                 score++;
                 newRecord += " √";
@@ -100,14 +100,14 @@ namespace WindowsFormsApp7
             else
             {
                 score--;
-                answer.Text = "";
+                txtAnswer.Text = "";
                 newRecord += " ×";
             }
 
             //更新分数
-            showScore.Text = score.ToString();
+            lblShowScore.Text = score.ToString();
 
-            resultRecord.Items.Add(newRecord);
+            lstResultRecord.Items.Add(newRecord);
         }
 
         //判断是否完成

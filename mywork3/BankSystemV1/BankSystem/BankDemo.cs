@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 
+/// <summary>
+/// 模拟银行，用户可选ATM或银行柜台来进行操作
+/// </summary>
 public class BankDemo
 {
     public static void Main(string[] args)
@@ -11,7 +14,7 @@ public class BankDemo
         bank.OpenAccount("3333", "三号信用账户", "3333", 50, "2");
         bank.OpenAccount("4444", "四号信用账户", "4444", 100, "2");
 
-        for(int i=0;i<5;i++)
+        for (int i = 0; i < 5; i++)
         {
             Console.WriteLine("\nPlease select a service\n" +
                                 "1: ATM; 2: BankCounter; ");
@@ -23,8 +26,8 @@ public class BankDemo
             }
             else if (op == "2")
             {
-                BankCounter BankC = new BankCounter(bank);
-                BankC.BCTransaction();
+                BankCounter bankCounter = new BankCounter(bank);
+                bankCounter.BankCounterTransaction();
             }
             else
                 Console.WriteLine("eeer");

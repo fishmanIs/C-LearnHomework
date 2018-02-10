@@ -6,9 +6,8 @@ public class Bank
 {
 
     List<Account> accounts = new List<Account>();//普通账户
-    List<CreditAccount> crdAccounts = new List<CreditAccount>();//信用账户
+    List<CreditAccount> creditAccounts = new List<CreditAccount>();//信用账户
 
-    //开户
     public Account OpenAccount(string id, string name, string pwd, double money, string op)
     {
         if(op == "1")
@@ -19,13 +18,12 @@ public class Bank
         }
         else
         {
-            CreditAccount crdAccount = new CreditAccount(id, name, pwd, money);
-            crdAccounts.Add(crdAccount);
-            return crdAccount;
+            CreditAccount creditAccount = new CreditAccount(id, name, pwd, money);
+            creditAccounts.Add(creditAccount);
+            return creditAccount;
         }
     }
 
-    //销户,普通账户
     public bool CloseAccount(Account account)
     {
         int idx = accounts.IndexOf(account);
@@ -34,23 +32,21 @@ public class Bank
         return true;
     }
 
-    //销户,信用账户
-    public bool CloseCreditAccount(CreditAccount crdAccount)
+    public bool CloseCreditAccount(CreditAccount creditAccount)
     {
-        int idx = crdAccounts.IndexOf(crdAccount);
+        int idx = creditAccounts.IndexOf(creditAccount);
         if (idx < 0) return false;
-        crdAccounts.Remove(crdAccount);
+        creditAccounts.Remove(creditAccount);
         return true;
     }
 
-    //查找账户
-    public Account FindAccount(string noi, string pwd, string op)
+    public Account FindAccount(string nameOrId, string pwd, string op)
     {
         if(op == "1")
         {
             foreach (Account account in accounts)
             {
-                if (account.IsMatch(noi, pwd))
+                if (account.IsMatch(nameOrId, pwd))
                 {
                     return account;
                 }
@@ -58,24 +54,15 @@ public class Bank
         }
         else
         {
-            foreach (CreditAccount crdAccount in crdAccounts)
+            foreach (CreditAccount creditAccount in creditAccounts)
             {
-                if (crdAccount.IsMatch(noi, pwd))
+                if (creditAccount.IsMatch(nameOrId, pwd))
                 {
-                    return crdAccount;
+                    return creditAccount;
                 }
             }
         }
 
         return null;
-        //for (int i = 0; i < accounts.Count; i++)
-        //{
-        //    Account account = accounts[i];
-
-        //    if( account.IsMatch(id, pwd))
-        //    {
-        //        return account;
-        //    }
-        //}
     }
 }

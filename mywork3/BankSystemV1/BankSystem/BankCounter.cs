@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
-public class BankCounter:Isg
+/// <summary>
+/// 可对信用账户进行所有操作，对普通账户仅开户销户
+/// </summary>
+public class BankCounter: IShowAndGetInput
 {
     Bank bank;
     public BankCounter(Bank bank)
@@ -12,7 +14,7 @@ public class BankCounter:Isg
         this.bank = bank;
     }
 
-    public void BCTransaction()
+    public void BankCounterTransaction()
     {
         Show("\n1: MoneyService; 2: AccountService;");
         string op = GetInput();
@@ -27,85 +29,82 @@ public class BankCounter:Isg
         }
     }
 
-
-    //搞钱服务
     private void MoneyService()
     {
         Show("\nMoneyService(CreditAccount Only)");
-        //查询账号
-        CreditAccount crdAccount = Find("2") as CreditAccount;
-        if (crdAccount == null)
+        
+        CreditAccount creditAccount = FindAccount("2") as CreditAccount;
+        if (creditAccount == null)
         {
             Show("eeer");
             return;
         } 
 
-        Show("1: display; 2: save; 3: withdraw 4: repayment; 5: AddLimit;");
+        Show("1: display; 2: save; 3: withdraw 4: repayment; 5: AddCreditLimit;");
         string op = GetInput();
 
         if (op == "1")
         {
-            Show("balance: " + crdAccount.Money +
-                " surplus: " + crdAccount.Sueplus + " debt: " + crdAccount.Debt);
+            Show("balance: " + creditAccount.Money +
+                " surplus: " + creditAccount.Sueplus + " debt: " + creditAccount.Debt);
         }
         else if (op == "2")
         {
             Show("save money");
-            string smoney = GetInput();
-            double money = double.Parse(smoney);
+            string strMoney = GetInput();
+            double money = double.Parse(strMoney);
 
-            bool ok = crdAccount.SaveMoney(money);
+            bool ok = creditAccount.SaveMoney(money);
             if (ok) Show("ok");
             else Show("eeer");
 
-            Show("balance: " + crdAccount.Money +
-                " surplus: " + crdAccount.Sueplus + " debt: " + crdAccount.Debt);
+            Show("balance: " + creditAccount.Money +
+                " surplus: " + creditAccount.Sueplus + " debt: " + creditAccount.Debt);
         }
         else if (op == "3")
         {
             Show("withdraw money");
-            string smoney = GetInput();
-            double money = double.Parse(smoney);
+            string strMoney = GetInput();
+            double money = double.Parse(strMoney);
 
-            bool ok = crdAccount.WithdrawMoney(money);
+            bool ok = creditAccount.WithdrawMoney(money);
             if (ok) Show("ok");
             else Show("eeer");
 
-            Show("balance: " + crdAccount.Money + 
-                " surplus: " + crdAccount.Sueplus + " debt: " + crdAccount.Debt);
+            Show("balance: " + creditAccount.Money + 
+                " surplus: " + creditAccount.Sueplus + " debt: " + creditAccount.Debt);
         }
         else if (op == "4")
         {
             Show("repayment money\n" +
-                    "debt: " + crdAccount.Debt);
-            string smoney = GetInput();
-            double money = double.Parse(smoney);
+                    "debt: " + creditAccount.Debt);
+            string strMoney = GetInput();
+            double money = double.Parse(strMoney);
 
-            bool ok = crdAccount.Repayment(money);
+            bool ok = creditAccount.Repayment(money);
             if (ok) Show("ok");
             else Show("eeer");
 
-            Show("balance: " + crdAccount.Money +
-                " surplus: " + crdAccount.Sueplus + " debt: " + crdAccount.Debt);
+            Show("balance: " + creditAccount.Money +
+                " surplus: " + creditAccount.Sueplus + " debt: " + creditAccount.Debt);
         }
         else if (op == "5")
         {
-            Show("AddLimit\n" +
-                    "CreditLine: " + crdAccount.CreditLine);
-            string sLimit = GetInput();
-            double limit = double.Parse(sLimit);
+            Show("AddCreditLimit\n" +
+                    "CreditLine: " + creditAccount.CreditLine);
+            string strLimit = GetInput();
+            double limit = double.Parse(strLimit);
 
-            bool ok = crdAccount.AddLimit(limit);
+            bool ok = creditAccount.Add_maxCreditLine(limit);
             if (ok) Show("ok");
             else Show("eeer");
 
-            Show("CreditLine: " + crdAccount.CreditLine);
+            Show("CreditLine: " + creditAccount.CreditLine);
         }
         else
             Show("eeer");
     }
 
-    //账号服务
     public void AccountService()
     {
         Show("\nAccountService\n" +
@@ -121,8 +120,8 @@ public class BankCounter:Isg
             Show("pwd: ");
             string pwd = GetInput();
             Show("money: ");
-            string smoney = GetInput();
-            double money = double.Parse(smoney);
+            string strMoney = GetInput();
+            double money = double.Parse(strMoney);
 
             Account account = bank.OpenAccount(id, name, pwd, money, op);
             if (account != null) Show("ok");
@@ -130,15 +129,15 @@ public class BankCounter:Isg
         }
         else if (op == "3")
         {
-            Account account = Find("1");
+            Account account = FindAccount("1");
             bool ok = bank.CloseAccount(account);
             if (ok) Show("ok");
             else Show("eeer");
         }
         else if (op == "4")
         {
-            CreditAccount crdAccount = Find("2") as CreditAccount;
-            bool ok = bank.CloseCreditAccount(crdAccount);
+            CreditAccount creditAccount = FindAccount("2") as CreditAccount;
+            bool ok = bank.CloseCreditAccount(creditAccount);
             if (ok) Show("ok");
             else Show("eeer");
         }
@@ -146,8 +145,7 @@ public class BankCounter:Isg
             Show("eeer");
     }
 
-    //查询账号
-    private Account Find(string op)
+    private Account FindAccount(string op)
     {
         Account account;
         Show("please insert your name or id");
@@ -163,14 +161,13 @@ public class BankCounter:Isg
     }
 
 
-    //接口实现
-    public void Show(string msg)
+    public void Show(string message)
     {
-        Console.WriteLine(msg);
+        Console.WriteLine(message);
     }
     public string GetInput()
     {
-        return Console.ReadLine();// 输入字符
+        return Console.ReadLine();
     }
 }
 
